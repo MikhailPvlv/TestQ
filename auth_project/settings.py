@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'auth_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [os.path.join(BASE_DIR, ), 'templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,6 +123,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Gmail smtp
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'beta44req@gmail.com'
@@ -130,3 +132,5 @@ EMAIL_HOST_PASSWORD = 'jabajke2342'
 EMAIL_PORT = 587
 
 AUTH_USER_MODEL = 'auth_user.CustomUser'
+
+
