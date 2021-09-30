@@ -7,20 +7,19 @@ from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
 
 
-def subscribe(request):
-    sub = SubscribeForm
-    if request.method == 'POST':
-        sub = SubscribeForm(request.POST)
-        subject = 'HI BOYS'
-        message = "u`ll be enjoyed"
-        recepient = str(sub['Email'].value())
-        send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently=False)
-        return render(request, 'success/html', {'recepient': recepient})
-    return render(request, 'layout/html', {'form': sub})
+# def subscribe(request):
+#     sub = SubscribeForm
+#     if request.method == 'POST':
+#         sub = SubscribeForm(request.POST)
+#         subject = 'HI BOYS'
+#         message = "u`ll be enjoyed"
+#         recepient = str(sub['Email'].value())
+#         send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently=False)
+#         return render(request, 'success/html', {'recepient': recepient})
+#     return render(request, 'layout/html', {'form': sub})
 
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'signup.html'
-   
+    success_url = 'auth_user/index.html'
+    template_name = 'auth_user/signup.html'
