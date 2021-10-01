@@ -5,6 +5,9 @@ from django.core.mail import send_mail
 from django.views import generic
 from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.contrib.auth import get_user_model
 
 
 # def subscribe(request):
@@ -19,7 +22,9 @@ from django.urls import reverse_lazy
 #     return render(request, 'layout/html', {'form': sub})
 
 
-class SignUp(generic.CreateView):
-    form_class = CustomUserCreationForm
-    success_url = 'auth_user/index.html'
-    template_name = 'auth_user/signup.html'
+class SignUp(APIView):
+    def post(self, request):
+        print(request.data)
+        get_user_model().objects.create(**request.data)
+
+        return Response(200)
