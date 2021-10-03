@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'auth_user.apps.AuthUserConfig',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -116,12 +117,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_FILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Gmail smtp
+# Gmail smtp, all the inf in .env
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -132,5 +139,9 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 
 AUTH_USER_MODEL = 'auth_user.CustomUser'
+
+# bootstrap crispy
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
