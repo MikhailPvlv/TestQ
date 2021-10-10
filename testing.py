@@ -1,0 +1,3 @@
+from auth_project.settings import EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
+
+print(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)

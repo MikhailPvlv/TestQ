@@ -2,7 +2,62 @@
 
 
 {
-"email": " ",
-"password": " ",
-"username": " "
+"email": "kozlowaa99@gmail.com",
+"password": "asljdkn8sdx",
+"first_name": "anjela"
 }
+
+from auth_user.models import *
+z = CustomUser
+
+### got from views without mail and genery_code
+from random import randrange
+from .models import CodeGenery
+from django.core.mail import send_mail
+from auth_project.settings import EMAIL_HOST_USER
+
+
+# model CodeGenery
+
+    ## in a view        CodeGenery.objects.create(code=randrange(1000, 9999), user=create)
+
+
+class CodeGenery(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    code = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.code}'
+
+
+genery_code = CodeGenery.objects.create(code=randrange(1000, 9999), user=create)
+        subject = "U have got a password code"
+        message = f'here is ur code {genery_code}'
+        send_from = EMAIL_HOST_USER
+        send_to = request.data['email']
+        send_mail(subject=subject, message=message, from_email=send_from, recipient_list=[send_to])
+
+### Custom Admin
+
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = CustomUser
+
+    list_display = ('email', 'is_staff', 'is_active')
+    list_filter = ('email', 'is_staff', 'is_active')
+
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')}
+         ),
+    )
+
+    search_fields = ('email',)
+    ordering = ('email',)
+
