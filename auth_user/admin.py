@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser
+from .models import CustomUser, CodeGenery
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
@@ -30,5 +30,7 @@ class CustomUserAdmin(UserAdmin):
 
 
 admin.site.register(CustomUser)
+admin.site.register(CodeGenery)
+
 
 

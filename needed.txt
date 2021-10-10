@@ -1,1 +1,8 @@
 [os.path.join(BASE_DIR, 'templates')]
+
+
+{
+"email": " ",
+"password": " ",
+"username": " "
+}
