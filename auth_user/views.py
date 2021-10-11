@@ -7,6 +7,7 @@ from .models import CodeGenery
 from django.conf import settings
 from random import randrange
 from django.core.mail import send_mail
+from django.conf import settings
 
 
 class SignUp(APIView):
@@ -34,6 +35,4 @@ class VerifyView(APIView):
             return HttpResponse(f'<h1>hi, {request.user.first_name} </h1>')
         return HttpResponseRedirect(reverse('activate'))
 
-# def activate(request):
-#
-#     return HttpResponse(f'<h1>hi, {request.user.first_name}</h1>')
+
