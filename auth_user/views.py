@@ -24,12 +24,15 @@ class SignUp(APIView):
         return HttpResponseRedirect(reverse('activate'))
 
 
-class ActivateView(APIView):
+class VerifyView(APIView):
     def post(self, request):
-        if request.data == CodeGenery.objects.get(code=get_user_model()):
-            pass
-
-
+        print(type(request.user))
+        if request.data['code'] == CodeGenery.objects.get(user_id=request.user.id).code:
+            user = request.user
+            user.is_verified = True
+            user.save()
+            return HttpResponse(f'<h1>hi, {request.user.first_name} </h1>')
+        return HttpResponseRedirect(reverse('activate'))
 
 # def activate(request):
 #
