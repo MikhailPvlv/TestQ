@@ -1,3 +1,6 @@
 from auth_project.settings import EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
 
-print(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
+from dotenv import load_dotenv
+
+load_dotenv()
+print(EMAIL_HOST_USER)
